@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Learnova — Personalized learning</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div id="app">
+      <aside class="sidebar">
+        <div class="brand"><span class="brand-mark">✦</span><span>learnova</span></div>
+        <button class="collapse" aria-label="Collapse navigation">☰</button>
+        <nav>
+          <p class="nav-label">Overview</p>
+          <button class="nav-item active" data-page="dashboard"><span>⌂</span> Dashboard</button>
+          <p class="nav-label">My learning</p>
+          <button class="nav-item" data-page="dna"><span>◈</span> Learning DNA</button>
+          <button class="nav-item" data-page="space"><span>▦</span> Learning space</button>
+          <button class="nav-item" data-page="planner"><span>◷</span> Study planner</button>
+          <button class="nav-item" data-page="practice"><span>✓</span> Practice & revision</button>
+          <button class="nav-item" data-page="mistakes"><span>⚡</span> Mistake notebook</button>
+          <button class="nav-item" data-page="growth"><span>↗</span> My growth</button>
+          <p class="nav-label">AI learning</p>
+          <button class="nav-item" data-page="companion"><span>✦</span> AI companion <b>NEW</b></button>
+          <button class="nav-item" data-page="reader"><span>▤</span> Material reader</button>
+          <button class="nav-item" data-page="listen"><span>◉</span> Listen & learn</button>
+          <button class="nav-item" data-page="adaptive"><span>⌁</span> Adaptive learning</button>
+          <p class="nav-label">Community</p>
+          <button class="nav-item" data-page="together"><span>♧</span> Study together</button>
+          <p class="nav-label">Rewards</p>
+          <button class="nav-item" data-page="achievements"><span>♜</span> Achievements</button>
+        </nav>
+        <div class="sidebar-bottom">
+          <button class="nav-item"><span>⚙</span> Settings</button>
+          <div class="profile-mini"><div class="avatar">AM</div><div><strong>Alex Morgan</strong><small>Level 12 learner</small></div><span>•••</span></div>
+        </div>
+      </aside>
+      <main class="main">
+        <header class="topbar"><button class="mobile-menu">☰</button><div class="search">⌕ <input placeholder="Search anything..." /><kbd>⌘ K</kbd></div><div class="top-actions"><button>◌</button><button class="notification">♢<i></i></button><div class="avatar">AM</div></div></header>
+        <section id="content"></section>
+      </main>
+    </div>
+    <div id="toast" class="toast"></div>
+    <script src="app.js"></script>
+  </body>
+</html>
