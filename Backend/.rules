@@ -1,0 +1,21 @@
+# Project: Student Learning Platform 
+
+Repository layout: all backend code lives inside a folder named "Backend/" at the repository root. Never create or modify backend files outside Backend/ (the only exception is .github/workflows/ at the repo root, which must use working-directory: Backend). Run all npm and node commands from inside Backend/.
+
+Stack: Node.js LTS, Express, ES modules, MongoDB + Mongoose, JWT (access + refresh), bcrypt, Zod, helmet, cors, express-rate-limit, swagger-jsdoc + swagger-ui-express, Jest + Supertest, dotenv.
+
+Architecture: modular. Backend/src/modules/<feature>/ each with <feature>.routes.js, .controller.js, .service.js, .model.js, .validation.js. Controllers are thin (HTTP only). Business logic lives in services. Shared code in Backend/src/config, Backend/src/middleware, Backend/src/services, Backend/src/utils.
+
+Conventions:
+- All routes under /api/v1.
+- Success response: { success: true, data, message }. Error response: { success: false, error: { code, message, details } }.
+- Use the ApiError class and asyncHandler wrapper. Never send raw errors or stack traces in production.
+- Every resource is scoped to the authenticated user. Never return or modify another user's data (return 404, not 403, for other users' resources).
+- List endpoints support ?page= & ?limit= and return { items, page, limit, total }.
+- Never return passwordHash or tokens in responses other than the auth endpoints.
+- Validate every request body, params and query with Zod.
+- Use ObjectId validation on all :id params.
+
+Not in scope (leave extension points only, no logic): AI Companion, Smart Material Reader, Listen & Learn, Gamification, Adaptive Learning Engine, Study Together.
+
+Definition of done for each phase: code written, app boots, tests for the new endpoints pass, then reply with (1) files created or changed, (2) endpoints added with example requests, (3) how I can test manually. Then STOP and wait. Do not start the next phase.
