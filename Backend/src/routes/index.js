@@ -8,6 +8,7 @@ import practiceRoutes from '../modules/practice/practice.routes.js';
 import mistakesRoutes from '../modules/mistakes/mistakes.routes.js';
 import plannerRoutes from '../modules/planner/planner.routes.js';
 import progressRoutes from '../modules/progress/progress.routes.js';
+import aiRoutes from '../modules/ai-companion/ai.routes.js';
 import { sendSuccess } from '../utils/response.js';
 import { authLimiter } from '../middleware/rateLimiters.js';
 
@@ -30,6 +31,7 @@ router.use(spaceRoutes);
 router.use(plannerRoutes);
 // "My Growth" reports (summary, subjects, quizzes, activity, heatmap, weekly report).
 router.use('/progress', progressRoutes);
+router.use('/ai', aiRoutes);
 
 // Future modules (extension points, no logic yet): ai-companion, material-reader,
 // listen-learn, gamification, adaptive-learning, study-together.

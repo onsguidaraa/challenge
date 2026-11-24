@@ -11,5 +11,6 @@ router.post('/login', validate({ body: loginSchema }), controller.login);
 router.post('/refresh', validate({ body: refreshSchema }), controller.refresh);
 router.post('/logout', validate({ body: logoutSchema }), controller.logout);
 router.get('/me', auth, controller.me);
+router.delete('/me', auth, controller.deleteMe);
 
 export default router;

@@ -27,3 +27,8 @@ export const logout = asyncHandler(async (req, res) => {
 export const me = asyncHandler(async (req, res) => {
   sendSuccess(res, { user: req.user }, 'Current user');
 });
+
+export const deleteMe = asyncHandler(async (req, res) => {
+  await authService.deleteAccount(req.user._id);
+  sendSuccess(res, null, 'Account deleted');
+});

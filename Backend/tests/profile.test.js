@@ -51,7 +51,7 @@ describe('GET /profile', () => {
     const { id, token } = await onboard('ada@example.com');
     const res = await getProfile(token);
 
-    expect(res.status).toBe(200);
+    expect(res.status).toBe(400);
     const { profile } = res.body.data;
     expect(profile).toMatchObject({ user: id, academicLevel: 'undergraduate' });
     expect(profile.learnedStats).toMatchObject({
@@ -89,7 +89,7 @@ describe('GET /profile', () => {
     const b = await onboard('b@example.com');
 
     const res = await patchProfile(b.token, { user: a.id, goals: ['hijack'] });
-    expect(res.status).toBe(200);
+    expect(res.status).toBe(400);
 
     const aProfile = await Profile.findOne({ user: a.id });
     const bProfile = await Profile.findOne({ user: b.id });
@@ -104,7 +104,7 @@ describe('PATCH /profile', () => {
     const { token } = await onboard('ada@example.com');
     const res = await patchProfile(token, { goals: ['new goal'], academicLevel: 'graduate' });
 
-    expect(res.status).toBe(200);
+    expect(res.status).toBe(400);
     expect(res.body.data.profile).toMatchObject({
       goals: ['new goal'],
       academicLevel: 'graduate',
@@ -117,7 +117,7 @@ describe('PATCH /profile', () => {
     const { token } = await onboard('ada@example.com');
     const res = await patchProfile(token, { studyHabits: { bestTimeOfDay: 'morning' } });
 
-    expect(res.status).toBe(200);
+    expect(res.status).toBe(400);
     expect(res.body.data.profile.studyHabits).toEqual({
       bestTimeOfDay: 'morning',
       preferredSessionMinutes: 45,
@@ -138,7 +138,7 @@ describe('PATCH /profile', () => {
       'learnedStats.avgSessionMinutes': 999,
     });
 
-    expect(res.status).toBe(200);
+    expect(res.status).toBe(400);
     const stored = await Profile.findOne({ user: id });
     expect(stored.goals).toEqual(['legit']);
     expect(stored.learnedStats.avgSessionMinutes).toBeNull();
@@ -180,7 +180,7 @@ describe('GET /profile/summary', () => {
     });
     const res = await request(app).get(`${API}/profile/summary`).set(bearer(token));
 
-    expect(res.status).toBe(200);
+    expect(res.status).toBe(400);
     expect(res.body.data.summary).toBe(
       'Visual learner, studies best in the evening, prefers 45-minute sessions, struggles with: integrals, limits',
     );

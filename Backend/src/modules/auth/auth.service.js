@@ -101,6 +101,11 @@ export const refresh = async (presentedToken) => {
 };
 
 /** Revokes a refresh token. Idempotent: unknown or already revoked tokens are ignored. */
+export const deleteAccount = async (userId) => {
+  const result = await User.deleteOne({ _id: userId });
+  if (!result.deletedCount) throw ApiError.notFound('User not found');
+};
+
 export const logout = async (presentedToken) => {
   const tokenHash = hashToken(presentedToken);
   await User.updateOne(
